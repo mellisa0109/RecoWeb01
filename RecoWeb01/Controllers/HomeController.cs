@@ -36,16 +36,10 @@ namespace RecoWeb01.Controllers
             {
                 model.SpValueList = null;
                 model.SpOutput = "";
-                model.SpValueJson = GetDateTimeAsync();
+                model.SpValueJson = "asd";
             }
             
             return View(model);
-        }
-
-        private string GetDateTimeAsync()
-        {
-            ServiceReference.ServiceClient service = new ServiceReference.ServiceClient();
-            return service.GetDateTime();
         }
     }
 }
