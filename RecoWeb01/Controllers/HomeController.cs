@@ -35,7 +35,7 @@ namespace RecoWeb01.Controllers
             if (ModelState.IsValid)// 모델에 선언됨 Required를 체크 하여 True,false 인지 파악
             {
                 model.SpValueList = null;
-                model.SpOutput = "";
+                model.SpOutput = "";                                 
                 model.SpValueJson = "asd";
             }
             
