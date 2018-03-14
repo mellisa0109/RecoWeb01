@@ -18,8 +18,6 @@ namespace RecoWeb01.Controllers
             this.repository = repositoryParam;
         }
 
-
-
         public ActionResult Index()
         {
             return View();
@@ -28,14 +26,12 @@ namespace RecoWeb01.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -43,6 +39,7 @@ namespace RecoWeb01.Controllers
 
         public ViewResult MenuList()
         {
+
             COW_MenuInquiryViewModel viewModel = new COW_MenuInquiryViewModel
             {
                 COW_MenuInquiry = repository.COW_MenuInquiry("Menu")
