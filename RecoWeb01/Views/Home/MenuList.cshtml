@@ -1,0 +1,15 @@
+﻿@model RecoWeb01.Models.COW_MenuInquiryViewModel
+
+@{
+    ViewBag.Title = "MenuList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Menu</h2>
+@foreach (var p in Model.COW_MenuInquiry)
+{
+    <div>
+    Code: @p.MenuCode  Name: @p.MenuName
+    </div>
+}
+

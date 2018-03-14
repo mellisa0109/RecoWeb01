@@ -1,15 +1,23 @@
-﻿using RecoWeb01.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using RecoWeb.Domain.Abstract;
+using RecoWeb01.Models;
+using RecoWeb.Domain.Concrete;
 
 namespace RecoWeb01.Controllers
 {
     public class HomeController : Controller
     {
+        private IMesEntityRepository repository;
+
+        public HomeController(IMesEntityRepository repositoryParam)
+        {
+            this.repository = repositoryParam;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -18,28 +26,25 @@ namespace RecoWeb01.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Index(DbModels model)
+
+
+        public ViewResult MenuList()
         {
-            if (ModelState.IsValid)// 모델에 선언됨 Required를 체크 하여 True,false 인지 파악
+
+            COW_MenuInquiryViewModel viewModel = new COW_MenuInquiryViewModel
             {
-                model.SpValueList = null;
-                model.SpOutput = "";                                 
-                model.SpValueJson = "asd";
-            }
-            
-            return View(model);
+                COW_MenuInquiry = repository.COW_MenuInquiry("Menu")
+            };
+            return View(viewModel);
         }
     }
 }
