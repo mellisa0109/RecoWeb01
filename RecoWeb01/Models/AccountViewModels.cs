@@ -49,16 +49,16 @@ namespace RecoWeb01.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "전자 메일")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [DataType(DataType.Text)]
+        [Display(Name = "사번")]
+        public string EmployeeNumber { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "암호")]
         public string Password { get; set; }
 
-        [Display(Name = "사용자 이름 및 암호 저장")]
+        [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
     }
 

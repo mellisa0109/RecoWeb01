@@ -8,6 +8,8 @@ namespace RecoWeb01
         // 번들 작성에 대한 자세한 내용은 http://go.microsoft.com/fwlink/?LinkId=301862 링크를 참조하십시오.
         public static void RegisterBundles(BundleCollection bundles)
         {
+            //bundles.IgnoreList.Clear();
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -21,11 +23,19 @@ namespace RecoWeb01
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/popper.js",
                       "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/customScript").Include("~/Scripts/Layout-Script.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Layout-Style.css",
+                      "~/Content/Layout-Login.css",
                       "~/Content/site.css"));
+
+            // Code removed for clarity.
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
