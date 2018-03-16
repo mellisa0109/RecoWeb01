@@ -9,10 +9,11 @@ namespace RecoWeb.Domain.Concrete
 {
     public class MesEntityRepository : IMesEntityRepository
     {
-        private Entities context = new Entities();     
+        private RecowebdbEntities context = new RecowebdbEntities();    
+         
 
-        public IEnumerable<COW_MenuInquiry_Result> COW_MenuInquiry(string category){
-            return context.COW_MenuInquiry(category);
+        public IEnumerable<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry(){
+            return context.COW_MenuListByJsonInquiry();
         }
     }
 }

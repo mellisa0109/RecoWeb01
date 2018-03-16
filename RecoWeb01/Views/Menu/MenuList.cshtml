@@ -3,12 +3,9 @@
 @{
     ViewBag.Title = "MenuList";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //((RecoWeb01.Controllers.MenuController)this.ViewContext.Controller).LoadMenuList();
 }
 
 <h2>MenuList</h2>
 
-@foreach (var p in Model.COW_MenuInquiry)
-{
-    <h2>@p.MenuCode / @p.MenuName</h2>
-}
 

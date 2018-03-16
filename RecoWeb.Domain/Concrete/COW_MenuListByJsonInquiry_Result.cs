@@ -11,14 +11,12 @@ namespace RecoWeb.Domain.Concrete
 {
     using System;
     
-    public partial class COW_MenuInquiry_Result
+    public partial class COW_MenuListByJsonInquiry_Result
     {
         public string MenuCode { get; set; }
-        public string MenuName { get; set; }
-        public string Description { get; set; }
-        public int Sequence { get; set; }
         public string ParentMenuCode { get; set; }
-        public string Category { get; set; }
+        public string Description { get; set; }
         public string Controller { get; set; }
+        public string ActionMethod { get; set; }
     }
 }

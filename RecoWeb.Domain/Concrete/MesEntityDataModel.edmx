@@ -4,73 +4,37 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="recowebdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <Function Name="COW_MenuInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="p_Category" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="COW_MenuInquiry2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="p_Category" Type="varchar" Mode="In" />
-        </Function>
-        <EntityContainer Name="recowebdbModelStoreContainer" />
+    <Schema Namespace="RecowebdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="COW_MenuListByJsonInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="RecowebdbModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="recowebdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" >
-          <FunctionImport Name="COW_MenuInquiry" ReturnType="Collection(recowebdbModel.COW_MenuInquiry_Result)">
-          <Parameter Name="p_Category" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="COW_MenuInquiry2" ReturnType="Collection(recowebdbModel.COW_MenuInquiry2_Result)">
-          <Parameter Name="p_Category" Mode="In" Type="String" />
-          </FunctionImport>
+      <Schema Namespace="RecowebdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RecowebdbEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="COW_MenuListByJsonInquiry" ReturnType="Collection(RecowebdbModel.COW_MenuListByJsonInquiry_Result)" />
         </EntityContainer>
-        <ComplexType Name="COW_MenuInquiry_Result">
+        <ComplexType Name="COW_MenuListByJsonInquiry_Result">
           <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="MenuName" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
-          <Property Type="Int32" Name="Sequence" Nullable="false" />
           <Property Type="String" Name="ParentMenuCode" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Category" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="Controller" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="COW_MenuInquiry2_Result">
-          <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="MenuName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
-          <Property Type="Int32" Name="Sequence" Nullable="false" />
-          <Property Type="String" Name="ParentMenuCode" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Category" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="Controller" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ActionMethod" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="recowebdbModelStoreContainer" CdmEntityContainer="Entities" >
-          <FunctionImportMapping FunctionImportName="COW_MenuInquiry" FunctionName="recowebdbModel.Store.COW_MenuInquiry">
+        <EntityContainerMapping StorageEntityContainer="RecowebdbModelStoreContainer" CdmEntityContainer="RecowebdbEntities" >
+          <FunctionImportMapping FunctionImportName="COW_MenuListByJsonInquiry" FunctionName="RecowebdbModel.Store.COW_MenuListByJsonInquiry">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="recowebdbModel.COW_MenuInquiry_Result">
+              <ComplexTypeMapping TypeName="RecowebdbModel.COW_MenuListByJsonInquiry_Result">
                 <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
-                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
                 <ScalarProperty Name="ParentMenuCode" ColumnName="ParentMenuCode" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Controller" ColumnName="Controller" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="COW_MenuInquiry2" FunctionName="recowebdbModel.Store.COW_MenuInquiry2">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="recowebdbModel.COW_MenuInquiry2_Result">
-                <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
-                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
-                <ScalarProperty Name="ParentMenuCode" ColumnName="ParentMenuCode" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="ActionMethod" ColumnName="ActionMethod" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -89,7 +53,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
       </DesignerInfoPropertySet>

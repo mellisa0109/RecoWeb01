@@ -9,6 +9,6 @@ namespace RecoWeb.Domain.Abstract
 {
     public interface IMesEntityRepository
     {
-        IEnumerable<COW_MenuInquiry_Result> COW_MenuInquiry(string category);
+        IEnumerable<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry();
     }
 }

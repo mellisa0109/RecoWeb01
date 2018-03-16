@@ -53,10 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IMesEntityRepository.cs" />
-    <Compile Include="Concrete\COW_MenuInquiry2_Result.cs">
-      <DependentUpon>MesEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Concrete\COW_MenuInquiry_Result.cs">
+    <Compile Include="Concrete\COW_MenuListByJsonInquiry_Result.cs">
       <DependentUpon>MesEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Concrete\MesEntityDataModel.Context.cs">
@@ -92,6 +89,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Entities\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Concrete\MesEntityDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MesEntityDataModel.edmx</DependentUpon>
@@ -102,9 +102,6 @@
       <DependentUpon>MesEntityDataModel.edmx</DependentUpon>
       <LastGenOutput>MesEntityDataModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

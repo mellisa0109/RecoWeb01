@@ -32,6 +32,7 @@ namespace RecoWeb01
                       "~/Content/bootstrap.css",
                       "~/Content/Layout-Style.css",
                       "~/Content/Layout-Login.css",
+                      "~/Content/material-icons.css",
                       "~/Content/site.css"));
 
             // Code removed for clarity.

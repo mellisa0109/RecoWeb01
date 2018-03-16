@@ -15,10 +15,10 @@ namespace RecoWeb.Domain.Concrete
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class Entities : DbContext
+    public partial class RecowebdbEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public RecowebdbEntities()
+            : base("name=RecowebdbEntities")
         {
         }
     
@@ -28,22 +28,9 @@ namespace RecoWeb.Domain.Concrete
         }
     
     
-        public virtual ObjectResult<COW_MenuInquiry_Result> COW_MenuInquiry(string p_Category)
+        public virtual ObjectResult<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry()
         {
-            var p_CategoryParameter = p_Category != null ?
-                new ObjectParameter("p_Category", p_Category) :
-                new ObjectParameter("p_Category", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry_Result>("COW_MenuInquiry", p_CategoryParameter);
-        }
-    
-        public virtual ObjectResult<COW_MenuInquiry2_Result> COW_MenuInquiry2(string p_Category)
-        {
-            var p_CategoryParameter = p_Category != null ?
-                new ObjectParameter("p_Category", p_Category) :
-                new ObjectParameter("p_Category", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry2_Result>("COW_MenuInquiry2", p_CategoryParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuListByJsonInquiry_Result>("COW_MenuListByJsonInquiry");
         }
     }
 }

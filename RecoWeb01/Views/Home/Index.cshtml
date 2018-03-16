@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //((RecoWeb01.Controllers.MenuController)this.ViewContext.Controller).LoadMenuList();
 }
 
 
@@ -29,7 +30,6 @@
     </div>
     <div class="col-md-4">
         <h2>Json</h2>
-
     </div>
     <h1>@{        
             if (@Model == null)

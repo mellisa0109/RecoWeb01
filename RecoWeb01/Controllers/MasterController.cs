@@ -8,21 +8,22 @@ using System.Web.Mvc;
 
 namespace RecoWeb01.Controllers
 {
-    public class test01Controller : Controller
+    public class MasterController : Controller
     {
         IMesEntityRepository repository;
-        public test01Controller(IMesEntityRepository repositoryParam)
+        public MasterController(IMesEntityRepository repositoryParam)
         {
             repository = repositoryParam;
         }
 
-        // GET: test01
-        public ActionResult Index()
+        // GET: Master
+        public ActionResult Employee()
         {
             COW_MenuInquiryViewModel viewModel = new COW_MenuInquiryViewModel
             {
-                COW_MenuInquiry = repository.COW_MenuInquiry("Menu")                
+                
             };
+
             return View(viewModel);
         }
     }
