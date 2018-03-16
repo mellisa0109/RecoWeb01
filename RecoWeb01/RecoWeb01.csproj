@@ -234,6 +234,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\test01Controller.cs" />
+    <Compile Include="Controllers\test02Controller.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -351,6 +352,7 @@
     <Content Include="Views\Home\MenuList.cshtml" />
     <Content Include="Views\Menu\MenuList.cshtml" />
     <Content Include="Views\test01\Index.cshtml" />
+    <Content Include="Views\test02\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

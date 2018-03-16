@@ -17,14 +17,14 @@
     <edmx:ConceptualModels>
       <Schema Namespace="recowebdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" >
-          <FunctionImport Name="COW_MenuInquiry" ReturnType="Collection(recowebdbModel.COW_MenuInquiry_Result)">
-          <Parameter Name="p_Category" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="COW_MenuInquiry2" ReturnType="Collection(recowebdbModel.COW_MenuInquiry2_Result)">
           <Parameter Name="p_Category" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="COW_MenuInquiry" ReturnType="Collection(recowebdbModel.COW_MenuInquiry_Result)">
+            <Parameter Name="p_Category" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="COW_MenuInquiry_Result">
+        <ComplexType Name="COW_MenuInquiry2_Result">
           <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="MenuName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
@@ -33,7 +33,7 @@
           <Property Type="String" Name="Category" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="Controller" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="COW_MenuInquiry2_Result">
+        <ComplexType Name="COW_MenuInquiry_Result">
           <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="MenuName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
@@ -48,9 +48,9 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="recowebdbModelStoreContainer" CdmEntityContainer="Entities" >
-          <FunctionImportMapping FunctionImportName="COW_MenuInquiry" FunctionName="recowebdbModel.Store.COW_MenuInquiry">
+          <FunctionImportMapping FunctionImportName="COW_MenuInquiry2" FunctionName="recowebdbModel.Store.COW_MenuInquiry2">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="recowebdbModel.COW_MenuInquiry_Result">
+              <ComplexTypeMapping TypeName="recowebdbModel.COW_MenuInquiry2_Result">
                 <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
                 <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -61,9 +61,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="COW_MenuInquiry2" FunctionName="recowebdbModel.Store.COW_MenuInquiry2">
+          <FunctionImportMapping FunctionImportName="COW_MenuInquiry" FunctionName="recowebdbModel.Store.COW_MenuInquiry">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="recowebdbModel.COW_MenuInquiry2_Result">
+              <ComplexTypeMapping TypeName="recowebdbModel.COW_MenuInquiry_Result">
                 <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
                 <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

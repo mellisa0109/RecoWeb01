@@ -28,15 +28,6 @@ namespace RecoWeb.Domain.Concrete
         }
     
     
-        public virtual ObjectResult<COW_MenuInquiry_Result> COW_MenuInquiry(string p_Category)
-        {
-            var p_CategoryParameter = p_Category != null ?
-                new ObjectParameter("p_Category", p_Category) :
-                new ObjectParameter("p_Category", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry_Result>("COW_MenuInquiry", p_CategoryParameter);
-        }
-    
         public virtual ObjectResult<COW_MenuInquiry2_Result> COW_MenuInquiry2(string p_Category)
         {
             var p_CategoryParameter = p_Category != null ?
@@ -44,6 +35,15 @@ namespace RecoWeb.Domain.Concrete
                 new ObjectParameter("p_Category", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry2_Result>("COW_MenuInquiry2", p_CategoryParameter);
+        }
+    
+        public virtual ObjectResult<COW_MenuInquiry_Result> COW_MenuInquiry(string p_Category)
+        {
+            var p_CategoryParameter = p_Category != null ?
+                new ObjectParameter("p_Category", p_Category) :
+                new ObjectParameter("p_Category", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry_Result>("COW_MenuInquiry", p_CategoryParameter);
         }
     }
 }
