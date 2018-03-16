@@ -27,15 +27,7 @@ namespace RecoWeb.Domain.Concrete
             throw new UnintentionalCodeFirstException();
         }
     
-    
-        public virtual ObjectResult<COW_MenuInquiry_Result> COW_MenuInquiry(string p_Category)
-        {
-            var p_CategoryParameter = p_Category != null ?
-                new ObjectParameter("p_Category", p_Category) :
-                new ObjectParameter("p_Category", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry_Result>("COW_MenuInquiry", p_CategoryParameter);
-        }
+        public virtual DbSet<TPREmployees> TPREmployees { get; set; }
     
         public virtual ObjectResult<COW_MenuInquiry2_Result> COW_MenuInquiry2(string p_Category)
         {
@@ -44,6 +36,15 @@ namespace RecoWeb.Domain.Concrete
                 new ObjectParameter("p_Category", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry2_Result>("COW_MenuInquiry2", p_CategoryParameter);
+        }
+    
+        public virtual ObjectResult<COW_MenuInquiry_Result> COW_MenuInquiry(string p_ParentMenuId)
+        {
+            var p_ParentMenuIdParameter = p_ParentMenuId != null ?
+                new ObjectParameter("p_ParentMenuId", p_ParentMenuId) :
+                new ObjectParameter("p_ParentMenuId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry_Result>("COW_MenuInquiry", p_ParentMenuIdParameter);
         }
     }
 }

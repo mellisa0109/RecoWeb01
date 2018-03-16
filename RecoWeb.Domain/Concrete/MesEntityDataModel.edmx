@@ -4,35 +4,42 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="recowebdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="recowebdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TPREmployees">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="80" />
+          <Property Name="MesPassword" Type="varbinary" MaxLength="128" />
+          <Property Name="AuthorityId" Type="varchar" MaxLength="30" />
+          <Property Name="IsUse" Type="bit" />
+          <Property Name="GenerateTime" Type="datetime" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="GenerateBy" Type="varchar" MaxLength="10" />
+          <Property Name="UpdateBy" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
+        </EntityType>
         <Function Name="COW_MenuInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="p_Category" Type="varchar" Mode="In" />
+          <Parameter Name="p_ParentMenuId" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="COW_MenuInquiry2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="p_Category" Type="varchar" Mode="In" />
-        </Function>
-        <EntityContainer Name="recowebdbModelStoreContainer" />
+        <EntityContainer Name="recowebdbModelStoreContainer">
+          <EntitySet Name="TPREmployees" EntityType="Self.TPREmployees" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="recowebdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" >
-          <FunctionImport Name="COW_MenuInquiry" ReturnType="Collection(recowebdbModel.COW_MenuInquiry_Result)">
-          <Parameter Name="p_Category" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="COW_MenuInquiry2" ReturnType="Collection(recowebdbModel.COW_MenuInquiry2_Result)">
           <Parameter Name="p_Category" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="COW_MenuInquiry" ReturnType="Collection(recowebdbModel.COW_MenuInquiry_Result)">
+          <Parameter Name="p_ParentMenuId" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="TPREmployees" EntityType="recowebdbModel.TPREmployees" />
         </EntityContainer>
-        <ComplexType Name="COW_MenuInquiry_Result">
-          <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="MenuName" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
-          <Property Type="Int32" Name="Sequence" Nullable="false" />
-          <Property Type="String" Name="ParentMenuCode" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Category" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="Controller" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="COW_MenuInquiry2_Result">
           <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="MenuName" Nullable="false" MaxLength="100" />
@@ -42,38 +49,59 @@
           <Property Type="String" Name="Category" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="Controller" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="COW_MenuInquiry_Result">
+          <Property Type="String" Name="MenuId" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="MenuName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Seq" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="TPREmployees">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="MesPassword" Type="Binary" MaxLength="128" FixedLength="false" />
+          <Property Name="AuthorityId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IsUse" Type="Boolean" />
+          <Property Name="GenerateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="GenerateBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateBy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="recowebdbModelStoreContainer" CdmEntityContainer="Entities" >
-          <FunctionImportMapping FunctionImportName="COW_MenuInquiry" FunctionName="recowebdbModel.Store.COW_MenuInquiry">
+        <FunctionImportMapping FunctionImportName="COW_MenuInquiry" FunctionName="recowebdbModel.Store.COW_MenuInquiry">
             <ResultMapping>
               <ComplexTypeMapping TypeName="recowebdbModel.COW_MenuInquiry_Result">
-                <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
                 <ScalarProperty Name="MenuName" ColumnName="MenuName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
-                <ScalarProperty Name="ParentMenuCode" ColumnName="ParentMenuCode" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Seq" ColumnName="Seq" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="COW_MenuInquiry2" FunctionName="recowebdbModel.Store.COW_MenuInquiry2">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="recowebdbModel.COW_MenuInquiry2_Result">
-                <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
-                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
-                <ScalarProperty Name="ParentMenuCode" ColumnName="ParentMenuCode" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Controller" ColumnName="Controller" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <EntitySetMapping Name="TPREmployees">
+            <EntityTypeMapping TypeName="recowebdbModel.TPREmployees">
+              <MappingFragment StoreEntitySet="TPREmployees">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="GenerateBy" ColumnName="GenerateBy" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="GenerateTime" ColumnName="GenerateTime" />
+                <ScalarProperty Name="IsUse" ColumnName="IsUse" />
+                <ScalarProperty Name="AuthorityId" ColumnName="AuthorityId" />
+                <ScalarProperty Name="MesPassword" ColumnName="MesPassword" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

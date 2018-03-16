@@ -4,7 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="38adc6627b254d9b9c877e4e6e803252" Name="Diagram1" />
+      <Diagram DiagramId="38adc6627b254d9b9c877e4e6e803252" Name="Diagram1" >
+        <EntityTypeShape EntityType="recowebdbModel.TPREmployees" Width="1.5" PointX="0.75" PointY="0.75" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

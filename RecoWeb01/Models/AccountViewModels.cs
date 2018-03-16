@@ -49,25 +49,26 @@ namespace RecoWeb01.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "전자 메일")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [DataType(DataType.Text)]
+        [Display(Name = "사번")]
+        public string EmployeeNumber { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "암호")]
         public string Password { get; set; }
 
-        [Display(Name = "사용자 이름 및 암호 저장")]
+        [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "전자 메일")]
-        public string Email { get; set; }
+        [StringLength(100, ErrorMessage = "사번은 {2}자 이상이어야 합니다.", MinimumLength = 6)]
+        [DataType(DataType.Text)]
+        [Display(Name = "사번")]
+        public string EmployeeId { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "{0}은(는) {2}자 이상이어야 합니다.", MinimumLength = 6)]
@@ -79,15 +80,41 @@ namespace RecoWeb01.Models
         [Display(Name = "암호 확인")]
         [Compare("Password", ErrorMessage = "암호와 확인 암호가 일치하지 않습니다.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "성명")]
+        public string EmployeeName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "E-mail")]
+        public string Email { get; set; }
+
+        [Required]
+        [Phone]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "휴대전화")]
+        public string PhoneNumber { get; set; }
+
+    }
+    public class FindPasswordViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "E-mail")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "사번은 {2}자 이상이어야 합니다.", MinimumLength = 6)]
+        [DataType(DataType.Text)]
+        [Display(Name = "사번")]
+        public string EmployeeId { get; set; }
+
     }
 
     public class ResetPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "전자 메일")]
-        public string Email { get; set; }
-
         [Required]
         [StringLength(100, ErrorMessage = "{0}은(는) {2}자 이상이어야 합니다.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -101,6 +128,7 @@ namespace RecoWeb01.Models
 
         public string Code { get; set; }
     }
+
 
     public class ForgotPasswordViewModel
     {

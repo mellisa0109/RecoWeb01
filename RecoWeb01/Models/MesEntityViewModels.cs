@@ -10,4 +10,9 @@ namespace RecoWeb01.Models
     {
         public IEnumerable<COW_MenuInquiry_Result> COW_MenuInquiry { get; set; }
     }
+
+    public class TPREmployeeViewModel
+    {
+        public IEnumerable<TPREmployees> TPREmployeeAdd { get; set; }
+    }
 }

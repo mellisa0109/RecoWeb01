@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RecoWeb01.Models;
+using RecoWeb.Domain.Abstract;
 
 namespace RecoWeb01.Controllers
 {
@@ -17,6 +18,12 @@ namespace RecoWeb01.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        IMesEntityRepository repository;
+        public AccountController(IMesEntityRepository repositoryParam)
+        {
+            repository = repositoryParam;
+        }
 
         public AccountController()
         {
@@ -75,7 +82,7 @@ namespace RecoWeb01.Controllers
 
             // 계정이 잠기는 로그인 실패로 간주되지 않습니다.
             // 암호 오류 시 계정 잠금을 트리거하도록 설정하려면 shouldLockout: true로 변경하십시오.
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.EmployeeNumber, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -152,6 +159,13 @@ namespace RecoWeb01.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                TPREmployeeViewModel viewModel = new TPREmployeeViewModel()
+                {
+
+                }
+
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -248,7 +262,7 @@ namespace RecoWeb01.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync("");
             if (user == null)
             {
                 // 사용자가 없는 경우 표시하지 않음
