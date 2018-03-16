@@ -12,7 +12,7 @@ namespace RecoWeb.Domain.Concrete
         private Entities context = new Entities();     
 
         public IEnumerable<COW_MenuInquiry_Result> COW_MenuInquiry(string category){
-            return context.COW_MenuInquiry(category);
+            return context.COW_MenuInquiry(category); 
         }
     }
 }
