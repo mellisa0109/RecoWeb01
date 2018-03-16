@@ -25,5 +25,14 @@ namespace RecoWeb01.Controllers
             };
             return View(viewModel);
         }
+
+        public ActionResult myTest()
+        {
+            COW_MenuInquiryViewModel viewModel = new COW_MenuInquiryViewModel
+            {
+                COW_MenuInquiry = repository.COW_MenuInquiry("Menu")
+            };
+            return View(viewModel);
+        }
     }
 }
