@@ -21,6 +21,14 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
         </EntityType>
+        <Function Name="COW_EmployeeSave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_EmployeeId" Type="varchar" Mode="In" />
+          <Parameter Name="p_Password" Type="varchar" Mode="In" />
+          <Parameter Name="p_EmployeeName" Type="nvarchar" Mode="In" />
+          <Parameter Name="p_Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="p_PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="p_OutMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
         <Function Name="COW_MenuInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="p_ParentMenuId" Type="varchar" Mode="In" />
         </Function>
@@ -39,6 +47,14 @@
           <Parameter Name="p_ParentMenuId" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="TPREmployees" EntityType="recowebdbModel.TPREmployees" />
+          <FunctionImport Name="COW_EmployeeSave" ReturnType="Collection(String)">
+            <Parameter Name="p_EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="p_Password" Mode="In" Type="String" />
+            <Parameter Name="p_EmployeeName" Mode="In" Type="String" />
+            <Parameter Name="p_Email" Mode="In" Type="String" />
+            <Parameter Name="p_PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="p_OutMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="COW_MenuInquiry2_Result">
           <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
@@ -102,6 +118,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="COW_EmployeeSave" FunctionName="recowebdbModel.Store.COW_EmployeeSave" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

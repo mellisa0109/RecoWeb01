@@ -15,4 +15,9 @@ namespace RecoWeb01.Models
     {
         public IEnumerable<TPREmployees> TPREmployeeAdd { get; set; }
     }
+
+    public class EmployeeAddViewModel
+    {
+        public IEnumerable<string> EmployeeAdd { get; set; }
+    }
 }

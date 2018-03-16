@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RecoWeb01.Models;
 using RecoWeb.Domain.Abstract;
+using System.Data.Entity.Core.Objects;
 
 namespace RecoWeb01.Controllers
 {
@@ -18,7 +19,7 @@ namespace RecoWeb01.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ObjectParameter outMessage;
         IMesEntityRepository repository;
         public AccountController(IMesEntityRepository repositoryParam)
         {
@@ -160,26 +161,31 @@ namespace RecoWeb01.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
-                TPREmployeeViewModel viewModel = new TPREmployeeViewModel()
+                EmployeeAddViewModel viewModel = new EmployeeAddViewModel()
                 {
-
+                    EmployeeAdd = repository.EmployeeAdd(model.EmployeeId, model.Password, model.EmployeeName, model.Email, model.PhoneNumber, outMessage)
+                };
+                
+                if(outMessage.Value.ToString() != "OK")
+                {
+                    ModelState.AddModelError("", outMessage.Value.ToString());
                 }
+                return RedirectToAction("Index", "Home");
 
-
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                //var result = await UserManager.CreateAsync(user, model.Password);
+                //if (result.Succeeded)
+                //{
+                //    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
-                    // 계정 확인 및 암호 재설정을 사용하도록 설정하는 방법에 대한 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=320771을 참조하십시오.
-                    // 이 링크를 통해 전자 메일 보내기
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "계정 확인", "<a href=\"" + callbackUrl + "\">여기</a>를 클릭하여 계정을 확인하십시오.");
+                //    // 계정 확인 및 암호 재설정을 사용하도록 설정하는 방법에 대한 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=320771을 참조하십시오.
+                //    // 이 링크를 통해 전자 메일 보내기
+                //    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                //    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                //    // await UserManager.SendEmailAsync(user.Id, "계정 확인", "<a href=\"" + callbackUrl + "\">여기</a>를 클릭하여 계정을 확인하십시오.");
 
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
+                //    return RedirectToAction("Index", "Home");
+                //}
+                //AddErrors(result);
             }
 
             // 이 경우 오류가 발생한 것이므로 폼을 다시 표시하십시오.

@@ -14,16 +14,20 @@
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="form-group">
             @Html.TextBoxFor(x => x.EmployeeId, new { @class = "form-control", @placeholder = "사번", @autofocus = "autofocus", @required = "required" })
-            @Html.ValidationMessageFor(x => x.EmployeeId, "", new { @class = "text-danger" })
+            <div>
+                @Html.ValidationMessageFor(x => x.EmployeeId, "", new { @class = "text-danger" })
+            </div>
         </div>
         <div class="form-group">
-            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @placeholder = "암호", @required = "required" })
-            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
-        </div>
+            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type = "password", @placeholder = "암호", @required = "required" })
+            <div>
+                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+            </div>
         <div class="form-group">
-            @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", @placeholder = "암호 확인", @required = "required" })
-            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
-        </div>
+            @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", @type = "password", @placeholder = "암호 확인", @required = "required" })
+            <div>
+                @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
 
         <br />
         <h5>부가정보</h5>
@@ -32,11 +36,11 @@
             @Html.ValidationMessageFor(x => x.EmployeeName, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "E-Mail", @required = "required" })
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "email", @placeholder = "E-Mail", @required = "required" })
             @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @placeholder = "휴대전화 번호", @required = "required" })
+            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @type = "tel", @placeholder = "휴대전화 번호", @required = "required" })
             @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "text-danger" })
         </div>
 
