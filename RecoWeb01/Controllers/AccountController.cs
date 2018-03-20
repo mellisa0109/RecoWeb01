@@ -161,9 +161,9 @@ namespace RecoWeb01.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
-                EmployeeAddViewModel viewModel = new EmployeeAddViewModel()
+                PRW_EmployeeSaveViewModel viewModel = new PRW_EmployeeSaveViewModel()
                 {
-                    EmployeeAdd = repository.EmployeeAdd(model.EmployeeId, model.Password, model.EmployeeName, model.Email, model.PhoneNumber, outMessage)
+                    PRW_EmployeeSave = repository.PRW_EmployeeSave(model.EmployeeId, model.Password, model.EmployeeName, model.Email, model.PhoneNumber, outMessage)
                 };
                 
                 if(outMessage.Value.ToString() != "OK")

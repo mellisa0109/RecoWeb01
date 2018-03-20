@@ -10,16 +10,16 @@ namespace RecoWeb.Domain.Concrete
 {
     public class MesEntityRepository : IMesEntityRepository
     {
-        private Entities context = new Entities();     
+        private RecowebdbEntities context = new RecowebdbEntities();     
 
-        public IEnumerable<COW_MenuInquiry_Result> COW_MenuInquiry(string category){
-            return context.COW_MenuInquiry(category); 
+        public IEnumerable<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry(){
+            return context.COW_MenuListByJsonInquiry(); 
         }
         
 
-        public IEnumerable<string> EmployeeAdd(string id,string password, string name, string email, string phonenumber, ObjectParameter outmessage)
+        public int PRW_EmployeeSave(string id,string password, string name, string email, string phonenumber, ObjectParameter outmessage)
         {
-            return context.COW_EmployeeSave(id, password, name, email, phonenumber, outmessage);
+            return context.PRW_EmployeeSave(id, password, name, email, phonenumber, outmessage);
         }
     }
 }

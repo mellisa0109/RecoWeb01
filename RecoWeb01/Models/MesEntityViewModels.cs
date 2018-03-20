@@ -10,14 +10,9 @@ namespace RecoWeb01.Models
     {
         public IEnumerable<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry { get; set; }
     }
-
-    public class TPREmployeeViewModel
+    
+    public class PRW_EmployeeSaveViewModel
     {
-        public IEnumerable<TPREmployees> TPREmployeeAdd { get; set; }
-    }
-
-    public class EmployeeAddViewModel
-    {
-        public IEnumerable<string> EmployeeAdd { get; set; }
+        public int PRW_EmployeeSave { get; set; }
     }
 }

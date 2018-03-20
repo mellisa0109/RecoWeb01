@@ -32,5 +32,30 @@ namespace RecoWeb.Domain.Concrete
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuListByJsonInquiry_Result>("COW_MenuListByJsonInquiry");
         }
+    
+        public virtual int PRW_EmployeeSave(string p_EmployeeId, string p_Password, string p_EmployeeName, string p_Email, string p_PhoneNumber, ObjectParameter p_OutMessage)
+        {
+            var p_EmployeeIdParameter = p_EmployeeId != null ?
+                new ObjectParameter("p_EmployeeId", p_EmployeeId) :
+                new ObjectParameter("p_EmployeeId", typeof(string));
+    
+            var p_PasswordParameter = p_Password != null ?
+                new ObjectParameter("p_Password", p_Password) :
+                new ObjectParameter("p_Password", typeof(string));
+    
+            var p_EmployeeNameParameter = p_EmployeeName != null ?
+                new ObjectParameter("p_EmployeeName", p_EmployeeName) :
+                new ObjectParameter("p_EmployeeName", typeof(string));
+    
+            var p_EmailParameter = p_Email != null ?
+                new ObjectParameter("p_Email", p_Email) :
+                new ObjectParameter("p_Email", typeof(string));
+    
+            var p_PhoneNumberParameter = p_PhoneNumber != null ?
+                new ObjectParameter("p_PhoneNumber", p_PhoneNumber) :
+                new ObjectParameter("p_PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PRW_EmployeeSave", p_EmployeeIdParameter, p_PasswordParameter, p_EmployeeNameParameter, p_EmailParameter, p_PhoneNumberParameter, p_OutMessage);
+        }
     }
 }
