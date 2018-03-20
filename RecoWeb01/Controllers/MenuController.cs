@@ -3,7 +3,6 @@ using RecoWeb01.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -31,22 +30,11 @@ namespace RecoWeb01.Controllers
         {
             COW_MenuInquiryViewModel viewModel = new COW_MenuInquiryViewModel
             {
-                COW_MenuListByJsonInquiryMainMenu = repository.COW_MenuListByJsonInquiry().Where(s => s.MenuCode == "Root").ToList()
-                ,COW_MenuListByJsonInquirySubMenu = repository.COW_MenuListByJsonInquiry().Where(s => s.MenuCode == repository.COW_MenuListByJsonInquiry().Where(m => m.MenuCode == "Root").FirstOrDefault().ParentMenuCode).ToList()
+                COW_MenuListByJsonInquiry = repository.COW_MenuListByJsonInquiry()
             };
 
             return View(viewModel);
         }
-
-        public ViewResult ChagingSubMenu(string subMenu)
-        {
-            COW_MenuInquiryViewModel viewModel = new COW_MenuInquiryViewModel
-            {
-                COW_MenuListByJsonInquirySubMenu = repository.COW_MenuListByJsonInquiry().Where(s => s.MenuCode == subMenu).ToList()
-            };
-
-            return View(viewModel);
-        }
-
+        
     }
 }
