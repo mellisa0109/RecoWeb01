@@ -29,11 +29,7 @@ namespace RecoWeb01.Controllers
 
         public ActionResult myTest()
         {
-            COW_MenuInquiryViewModel viewModel = new COW_MenuInquiryViewModel
-            {
-                COW_MenuInquiry = repository.COW_MenuInquiry("Menu")
-            };
-            return View(viewModel);
+            return View();
         }
     }
 }
