@@ -15,5 +15,10 @@ namespace RecoWeb.Domain.Concrete
         public IEnumerable<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry(){
             return context.COW_MenuListByJsonInquiry();
         }
+
+        public IEnumerable<PRW_EmployeeInquiry_Result> PRW_EmployeeInquiry(string category)
+        {
+            return context.PRW_EmployeeInquiry(category);
+        }
     }
 }

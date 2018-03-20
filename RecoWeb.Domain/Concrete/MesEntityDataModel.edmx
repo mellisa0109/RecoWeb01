@@ -6,6 +6,9 @@
     <edmx:StorageModels>
     <Schema Namespace="RecowebdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="COW_MenuListByJsonInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PRW_EmployeeInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_PlantId" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="RecowebdbModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -13,6 +16,9 @@
       <Schema Namespace="RecowebdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RecowebdbEntities" annotation:LazyLoadingEnabled="true" >
           <FunctionImport Name="COW_MenuListByJsonInquiry" ReturnType="Collection(RecowebdbModel.COW_MenuListByJsonInquiry_Result)" />
+          <FunctionImport Name="PRW_EmployeeInquiry" ReturnType="Collection(RecowebdbModel.PRW_EmployeeInquiry_Result)">
+          <Parameter Name="p_PlantId" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="COW_MenuListByJsonInquiry_Result">
           <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
@@ -20,6 +26,23 @@
           <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="Controller" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="ActionMethod" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="PRW_EmployeeInquiry_Result">
+          <Property Type="String" Name="EmployeeId" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="Gubun" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="DeptName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="In_Out" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="PositionName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="PhoneNo" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="E_mail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Production_Section" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="PT_Section" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="QC_Section" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="MM_Section" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="TL_Section" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="RD_Section" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="IsUse" Nullable="false" MaxLength="1" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -35,6 +58,27 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Controller" ColumnName="Controller" />
                 <ScalarProperty Name="ActionMethod" ColumnName="ActionMethod" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PRW_EmployeeInquiry" FunctionName="RecowebdbModel.Store.PRW_EmployeeInquiry">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RecowebdbModel.PRW_EmployeeInquiry_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Gubun" ColumnName="Gubun" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="In_Out" ColumnName="In/Out" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+                <ScalarProperty Name="Production_Section" ColumnName="Production Section" />
+                <ScalarProperty Name="PT_Section" ColumnName="PT Section" />
+                <ScalarProperty Name="QC_Section" ColumnName="QC Section" />
+                <ScalarProperty Name="MM_Section" ColumnName="MM Section" />
+                <ScalarProperty Name="TL_Section" ColumnName="TL Section" />
+                <ScalarProperty Name="RD_Section" ColumnName="RD Section" />
+                <ScalarProperty Name="IsUse" ColumnName="IsUse" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

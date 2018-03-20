@@ -32,5 +32,14 @@ namespace RecoWeb.Domain.Concrete
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuListByJsonInquiry_Result>("COW_MenuListByJsonInquiry");
         }
+    
+        public virtual ObjectResult<PRW_EmployeeInquiry_Result> PRW_EmployeeInquiry(string p_PlantId)
+        {
+            var p_PlantIdParameter = p_PlantId != null ?
+                new ObjectParameter("p_PlantId", p_PlantId) :
+                new ObjectParameter("p_PlantId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PRW_EmployeeInquiry_Result>("PRW_EmployeeInquiry", p_PlantIdParameter);
+        }
     }
 }

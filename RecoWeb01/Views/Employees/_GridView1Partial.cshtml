@@ -1,0 +1,80 @@
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridView1";
+        settings.CallbackRouteValues = new { Controller = "Employees", Action = "GridView1Partial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Employees", Action = "GridView1PartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Employees", Action = "GridView1PartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Employees", Action = "GridView1PartialDelete" };
+        //settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        //New, Edit 창 팝업
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.CommandColumn.ShowSelectButton = false;
+
+        //포커스
+        settings.SettingsBehavior.AllowFocusedRow = true;
+
+        //merge
+        //settings.SettingsBehavior.AllowCellMerge = true;
+
+        //페이징 사이즈
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100", "500" };
+
+        settings.KeyFieldName = "EmployeeId";
+
+        //settings.ClientSideEvents.BeginCallback = "OnBeginCallback";
+        //settings.ClientSideEvents.EndCallback = "OnEndCallback";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        //Row 선택
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        //특정 칼럼별 합계표시
+        //settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Count, "EmployeeId");
+        //settings.Settings.ShowFooter = true;
+
+        settings.Columns.Add("EmployeeId","다이어리",MVCxGridViewColumnType.Default);
+        settings.Columns.Add("EmployeeName");
+        settings.Columns.Add("Gubun");
+        settings.Columns.Add("DeptName");
+        settings.Columns.Add("In_Out");
+        settings.Columns.Add("PositionName");
+        settings.Columns.Add("PhoneNo");
+        settings.Columns.Add("E_mail");
+        settings.Columns.Add("Production_Section");
+        settings.Columns.Add("PT_Section");
+        settings.Columns.Add("QC_Section");
+        settings.Columns.Add("MM_Section");
+        settings.Columns.Add("TL_Section");
+        settings.Columns.Add("RD_Section");
+        settings.Columns.Add("IsUse");
+
+        //새로운 Row 추가시 포커스 가기
+        settings.BeforeGetCallbackResult = (s, e) =>
+        {
+            var gridView = s as MVCxGridView;
+            gridView.FocusedRowIndex = gridView.FindVisibleIndexByKeyValue(ViewData["newKey"]);
+        };
+
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

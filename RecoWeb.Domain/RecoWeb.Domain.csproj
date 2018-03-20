@@ -72,6 +72,9 @@
       <DependentUpon>MesEntityDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Concrete\MesEntityRepository.cs" />
+    <Compile Include="Concrete\PRW_EmployeeInquiry_Result.cs">
+      <DependentUpon>MesEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
