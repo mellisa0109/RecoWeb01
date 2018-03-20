@@ -42,7 +42,7 @@ namespace RecoWeb01.Controllers
 
             COW_MenuInquiryViewModel viewModel = new COW_MenuInquiryViewModel
             {
-                COW_MenuInquiry = repository.COW_MenuInquiry("PM100")
+                //COW_MenuInquiry = repository.COW_MenuInquiry("Menu")
             };
             return View(viewModel);
         }

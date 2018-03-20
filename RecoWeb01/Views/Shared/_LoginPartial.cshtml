@@ -15,8 +15,8 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("등록", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("로그인", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    <div style="display: inline-block;">
+        @Html.ActionLink("로그인", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-sm btn-outline-secondary" })
+        @Html.ActionLink("등록", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" ,@class = "btn btn-sm btn-outline-secondary" })
+    </div>
 }

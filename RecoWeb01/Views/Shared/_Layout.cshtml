@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model RecoWeb01.Models.COW_MenuInquiryViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -8,38 +10,100 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    @{
+        var topMenu = Model.COW_MenuListByJsonInquiry
+                    .Where(s => s.MenuCode == "Root");
+    }
+    <script type="text/javascript">
+        function CraeteSubMenu(muenName)
+        {
+            alert(muenName);
+        }
+    </script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("응용 프로그램 이름", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("홈", "Index", "Home")</li>
-                    <li>@Html.ActionLink("정보", "About", "Home")</li>
-                    <li>@Html.ActionLink("연락처", "Contact", "Home")</li>
+    <div class="wrapper">
+        <div class="sidebar" data-color="black" data-image="../Images/sidebar-5.jpg">
+            <!--
+                Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+                Tip 2: you can also add an image using data-image tag
+            -->
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="http://www.creative-tim.com" class="simple-text">
+                        리코시스템
+                    </a>
+                </div>
+                <ul class="nav">
+                    @*@foreach (var menu in topMenu)
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="material-icons">domain</i>
+                                <p>@menu.ParentMenuCode</p>
+                            </a>
+                        </li>
+                    }*@
+
+                   
+                    <li class="nav-item active active-pro">
+                        <a class="nav-link active" href="upgrade.html">
+                            <i class="nc-icon nc-alien-33"></i>
+                            <p>RecoSystem</p>
+                        </a>
+                    </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 내 ASP.NET 응용 프로그램</p>
-        </footer>
-    </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="~/Menu/MenuList"> 홈으로 </a>
+                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <ul class="nav navbar-nav mr-auto">
+                            @foreach (var menu in topMenu)
+                            {
+                                <li class="nav-item ml-5" id=@menu.ParentMenuCode onclick="CraeteSubMenu(@menu.ParentMenuCode.ToString())">
+                                    <a class="nav-link" href="#"> 
+                                        <span class="d-lg-block text-dark">@menu.ParentMenuCode</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container">
+                    <nav>
 
+                        <p class="copyright text-center">
+                            Copyright ©
+                            <script>
+                                document.write("2015-"+new Date().getFullYear())
+                            </script>
+                            <a href="http://www.recosys.co.kr">Reco System</a>, All rights reserved.
+                        </p>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/CustomScript")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

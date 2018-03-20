@@ -8,7 +8,7 @@ namespace RecoWeb01.Models
 {
     public class COW_MenuInquiryViewModel
     {
-        public IEnumerable<COW_MenuInquiry_Result> COW_MenuInquiry { get; set; }
+        public IEnumerable<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry { get; set; }
     }
 
     public class TPREmployeeViewModel

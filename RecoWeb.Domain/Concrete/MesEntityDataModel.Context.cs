@@ -15,10 +15,10 @@ namespace RecoWeb.Domain.Concrete
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class Entities : DbContext
+    public partial class RecowebdbEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public RecowebdbEntities()
+            : base("name=RecowebdbEntities")
         {
         }
     
@@ -27,49 +27,10 @@ namespace RecoWeb.Domain.Concrete
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TPREmployees> TPREmployees { get; set; }
     
-        public virtual ObjectResult<COW_MenuInquiry2_Result> COW_MenuInquiry2(string p_Category)
+        public virtual ObjectResult<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry()
         {
-            var p_CategoryParameter = p_Category != null ?
-                new ObjectParameter("p_Category", p_Category) :
-                new ObjectParameter("p_Category", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry2_Result>("COW_MenuInquiry2", p_CategoryParameter);
-        }
-    
-        public virtual ObjectResult<COW_MenuInquiry_Result> COW_MenuInquiry(string p_ParentMenuId)
-        {
-            var p_ParentMenuIdParameter = p_ParentMenuId != null ?
-                new ObjectParameter("p_ParentMenuId", p_ParentMenuId) :
-                new ObjectParameter("p_ParentMenuId", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuInquiry_Result>("COW_MenuInquiry", p_ParentMenuIdParameter);
-        }
-    
-        public virtual ObjectResult<string> COW_EmployeeSave(string p_EmployeeId, string p_Password, string p_EmployeeName, string p_Email, string p_PhoneNumber, ObjectParameter p_OutMessage)
-        {
-            var p_EmployeeIdParameter = p_EmployeeId != null ?
-                new ObjectParameter("p_EmployeeId", p_EmployeeId) :
-                new ObjectParameter("p_EmployeeId", typeof(string));
-    
-            var p_PasswordParameter = p_Password != null ?
-                new ObjectParameter("p_Password", p_Password) :
-                new ObjectParameter("p_Password", typeof(string));
-    
-            var p_EmployeeNameParameter = p_EmployeeName != null ?
-                new ObjectParameter("p_EmployeeName", p_EmployeeName) :
-                new ObjectParameter("p_EmployeeName", typeof(string));
-    
-            var p_EmailParameter = p_Email != null ?
-                new ObjectParameter("p_Email", p_Email) :
-                new ObjectParameter("p_Email", typeof(string));
-    
-            var p_PhoneNumberParameter = p_PhoneNumber != null ?
-                new ObjectParameter("p_PhoneNumber", p_PhoneNumber) :
-                new ObjectParameter("p_PhoneNumber", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("COW_EmployeeSave", p_EmployeeIdParameter, p_PasswordParameter, p_EmployeeNameParameter, p_EmailParameter, p_PhoneNumberParameter, p_OutMessage);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_MenuListByJsonInquiry_Result>("COW_MenuListByJsonInquiry");
         }
     }
 }
