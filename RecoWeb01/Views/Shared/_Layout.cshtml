@@ -9,17 +9,33 @@
     <title>@ViewBag.Title - 내 ASP.NET 응용 프로그램</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-    @{
-        var topMenu = Model.COW_MenuListByJsonInquiry
-                    .Where(s => s.MenuCode == "Root");
-    }
+            
     <script type="text/javascript">
-        function CraeteSubMenu(muenName)
-        {
-            alert(muenName);
-        }
+        function CraeteSubMenu(name) {
+            var menuName = "";
+            menuName = name;
+
+            @*//@SubMenu(name);*@
+
+            var html = "";
+            $("#subMenu").append(html);
+        };
     </script>
+
+    @Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    @Html.DevExpress().GetScripts(
+        new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new Script { ExtensionSuite = ExtensionSuite.Editors },
+        new Script { ExtensionSuite = ExtensionSuite.GridView }
+    )
+
+
+
+
 </head>
 <body>
     <div class="wrapper">
@@ -35,16 +51,16 @@
                         리코시스템
                     </a>
                 </div>
-                <ul class="nav">
-                    @*@foreach (var menu in topMenu)
+                <ul id="subMenu" class="nav">
+                    @foreach (var menu in Model.COW_MenuListByJsonInquirySubMenu)
                     {
                         <li class="nav-item active">
-                            <a class="nav-link" href="dashboard.html">
-                                <i class="material-icons">domain</i>
+                            <a class="nav-link" href="#">
+                                <i class="material-icons">chevron_right</i>
                                 <p>@menu.ParentMenuCode</p>
                             </a>
                         </li>
-                    }*@
+                    }
 
                    
                     <li class="nav-item active active-pro">
@@ -66,12 +82,13 @@
                         <span class="navbar-toggler-bar burger-lines"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            @foreach (var menu in topMenu)
+                        <ul id ="myid" class="nav navbar-nav mr-auto">
+                            @foreach (var menu in Model.COW_MenuListByJsonInquiryMainMenu)
                             {
-                                <li class="nav-item ml-5" id=@menu.ParentMenuCode onclick="CraeteSubMenu(@menu.ParentMenuCode.ToString())">
-                                    <a class="nav-link" href="#"> 
-                                        <span class="d-lg-block text-dark">@menu.ParentMenuCode</span>
+                                <li class="nav-item ml-5" id=@menu.ParentMenuCode @*onclick="CraeteSubMenu('@menu.ParentMenuCode.ToString()')"*@>
+                                    <a class="nav-link" href="@Url.Action("ChagingSubMenu", "MenuController",new { subMenu=menu.ParentMenuCode.ToString() })"> 
+                                        <i class="material-icons md-30">menu</i>
+                                        <span class="d-lg-block text-dark" style="font-size:1.5rem;">@menu.ParentMenuCode</span>
                                     </a>
                                 </li>
                             }
