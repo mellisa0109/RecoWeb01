@@ -57,5 +57,14 @@ namespace RecoWeb.Domain.Concrete
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PRW_EmployeeSave", p_EmployeeIdParameter, p_PasswordParameter, p_EmployeeNameParameter, p_EmailParameter, p_PhoneNumberParameter, p_OutMessage);
         }
+    
+        public virtual ObjectResult<COW_DataStackInquiry_Result> COW_DataStackInquiry(string p_StackCode)
+        {
+            var p_StackCodeParameter = p_StackCode != null ?
+                new ObjectParameter("p_StackCode", p_StackCode) :
+                new ObjectParameter("p_StackCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<COW_DataStackInquiry_Result>("COW_DataStackInquiry", p_StackCodeParameter);
+        }
     }
 }

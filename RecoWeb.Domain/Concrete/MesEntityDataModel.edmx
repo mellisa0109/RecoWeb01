@@ -5,6 +5,9 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RecowebdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="COW_DataStackInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_StackCode" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="COW_MenuListByJsonInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="PRW_EmployeeSave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="p_EmployeeId" Type="varchar" Mode="In" />
@@ -29,6 +32,9 @@
             <Parameter Name="p_PhoneNumber" Mode="In" Type="String" />
             <Parameter Name="p_OutMessage" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="COW_DataStackInquiry" ReturnType="Collection(RecowebdbModel.COW_DataStackInquiry_Result)">
+            <Parameter Name="p_StackCode" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="COW_MenuListByJsonInquiry_Result">
           <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
@@ -36,6 +42,14 @@
           <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="Controller" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="ActionMethod" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="COW_DataStackInquiry_Result">
+          <Property Type="Int32" Name="StackID" Nullable="false" />
+          <Property Type="String" Name="StackCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="StackName" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="LaunchTime" Nullable="true" />
+          <Property Type="String" Name="GenerateTime" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="UpdateTime" Nullable="true" MaxLength="30" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -55,6 +69,18 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PRW_EmployeeSave" FunctionName="RecowebdbModel.Store.PRW_EmployeeSave" />
+          <FunctionImportMapping FunctionImportName="COW_DataStackInquiry" FunctionName="RecowebdbModel.Store.COW_DataStackInquiry">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RecowebdbModel.COW_DataStackInquiry_Result">
+                <ScalarProperty Name="StackID" ColumnName="StackID" />
+                <ScalarProperty Name="StackCode" ColumnName="StackCode" />
+                <ScalarProperty Name="StackName" ColumnName="StackName" />
+                <ScalarProperty Name="LaunchTime" ColumnName="LaunchTime" />
+                <ScalarProperty Name="GenerateTime" ColumnName="GenerateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

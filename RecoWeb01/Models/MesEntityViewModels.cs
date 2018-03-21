@@ -17,4 +17,9 @@ namespace RecoWeb01.Models
     {
         public int PRW_EmployeeSave { get; set; }
     }
+
+    public class COW_DataStackInquiryViewModel
+    {
+        public IEnumerable<COW_DataStackInquiry_Result> COW_DataStackInquiry { get; set; }
+    }
 }

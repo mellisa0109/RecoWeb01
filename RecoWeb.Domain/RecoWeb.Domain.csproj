@@ -53,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IMesEntityRepository.cs" />
+    <Compile Include="Concrete\COW_DataStackInquiry_Result.cs">
+      <DependentUpon>MesEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Concrete\COW_MenuListByJsonInquiry_Result.cs">
       <DependentUpon>MesEntityDataModel.tt</DependentUpon>
     </Compile>

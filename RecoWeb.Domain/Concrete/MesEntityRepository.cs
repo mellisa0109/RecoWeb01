@@ -21,5 +21,10 @@ namespace RecoWeb.Domain.Concrete
         {
             return context.PRW_EmployeeSave(id, password, name, email, phonenumber, outmessage);
         }
+
+        public IEnumerable<COW_DataStackInquiry_Result> COW_DataStackInquiry(string code)
+        {
+            return context.COW_DataStackInquiry(code);
+        }
     }
 }
