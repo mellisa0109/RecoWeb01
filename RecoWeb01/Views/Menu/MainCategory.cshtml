@@ -1,0 +1,17 @@
+﻿@model RecoWeb01.Models.COW_MenuInquiryViewModel
+
+@{
+    Layout = null;
+}
+
+<ul id="myid" class="nav navbar-nav mr-auto">
+    @foreach (var menu in Model.COW_MenuListByJsonInquiryMainMenu.Where(s => s.MenuCode == "Root"))
+    {
+        <li class="nav-item mr-4" id=@menu.ParentMenuCode @*onclick="CraeteSubMenu('@menu.ParentMenuCode.ToString()')"*@>
+            <a class="nav-link" href="@Url.Action("MenuList", "Menu",new { subMenu=menu.ParentMenuCode.ToString() })">
+                <i class="material-icons md-26">menu</i>
+                <span class="d-lg-block text-dark" style="font-size:1.1rem;">@menu.ParentMenuCode</span>
+            </a>
+        </li>
+    }
+</ul>

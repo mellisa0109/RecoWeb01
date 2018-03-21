@@ -4,23 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE = Edge" />
+
     <title>@ViewBag.Title - 내 ASP.NET 응용 프로그램</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-            
-    <script type="text/javascript">
-        function CraeteSubMenu(name) {
-            var menuName = "";
-            menuName = name;
-
-            @*//@SubMenu(name);*@
-
-            var html = "";
-            $("#subMenu").append(html);
-        };
-    </script>
+        
 
 </head>
 <body>
@@ -30,36 +21,18 @@
                 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
                 Tip 2: you can also add an image using data-image tag
-            -->
+            -->                                                        
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="http://www.creative-tim.com" class="simple-text">
                         리코시스템
                     </a>
                 </div>
-                <ul id="subMenu" class="nav">
-                    @foreach (var menu in Model.COW_MenuListByJsonInquirySubMenu)
-                    {
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">
-                                <i class="material-icons">chevron_right</i>
-                                <p>@menu.ParentMenuCode</p>
-                            </a>
-                        </li>
-                    }
-
-                   
-                    <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="upgrade.html">
-                            <i class="nc-icon nc-alien-33"></i>
-                            <p>RecoSystem</p>
-                        </a>
-                    </li>
-                </ul>
+                @Html.Action("MiddleCategory", "Menu", new { category = Model.COW_MenuListByJsonInquiryMainMenu.Where(s => s.MenuCode == "Root").FirstOrDefault().ParentMenuCode });
             </div>
         </div>
         <div class="main-panel">
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+            <nav class="navbar navbar-expand-lg " color-on-scroll="500">                                                                                                                                                               
                 <div class="container-fluid">
                     <a class="navbar-brand" href="~/Menu/MenuList"> 홈으로 </a>
                     <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,17 +41,7 @@
                         <span class="navbar-toggler-bar burger-lines"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul id ="myid" class="nav navbar-nav mr-auto">
-                            @foreach (var menu in Model.COW_MenuListByJsonInquiryMainMenu)
-                            {
-                                <li class="nav-item ml-5" id=@menu.ParentMenuCode @*onclick="CraeteSubMenu('@menu.ParentMenuCode.ToString()')"*@>
-                                    <a class="nav-link" href="@Url.Action("ChagingSubMenu", "MenuController",new { subMenu=menu.ParentMenuCode.ToString() })"> 
-                                        <i class="material-icons md-30">menu</i>
-                                        <span class="d-lg-block text-dark" style="font-size:1.5rem;">@menu.ParentMenuCode</span>
-                                    </a>
-                                </li>
-                            }
-                        </ul>
+                        @Html.Action("MainCategory", "Menu");
                     </div>
                 </div>
             </nav>
@@ -108,5 +71,16 @@
     @Scripts.Render("~/bundles/CustomScript")
 
     @RenderSection("scripts", required: false)
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".dropdown").click(function (e) {
+                console.log("클릭됨");
+                $(".dropdown").toggleClass("show");
+                $(".dropdown-menu").toggleClass("show");
+            });
+        });
+    </script>
 </body>
 </html>
