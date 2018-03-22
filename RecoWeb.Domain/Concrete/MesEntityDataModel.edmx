@@ -47,9 +47,9 @@
           <Property Type="Int32" Name="StackID" Nullable="false" />
           <Property Type="String" Name="StackCode" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="StackName" Nullable="true" MaxLength="10" />
-          <Property Type="DateTime" Name="LaunchTime" Nullable="true" />
-          <Property Type="String" Name="GenerateTime" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="UpdateTime" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="LaunchTime" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="GenerateTime" Nullable="true" MaxLength="19" />
+          <Property Type="String" Name="UpdateTime" Nullable="true" MaxLength="19" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>

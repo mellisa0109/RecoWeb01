@@ -34,16 +34,22 @@ namespace RecoWeb01.Controllers
 
             return View(viewModel);
         }
+        
+
 
         [ValidateInput(false)]
-        public ActionResult GridViewPartial()
+        public ActionResult Grid_DataStack()
         {
-            var model = new object[0];
-            return PartialView("_GridViewPartial", model);
+            COW_DataStackInquiryViewModel viewModel = new COW_DataStackInquiryViewModel
+            {
+                COW_DataStackInquiry = repository.COW_DataStackInquiry("").ToList()
+            };
+
+            return PartialView("_Grid_DataStack", viewModel.COW_DataStackInquiry);
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialAddNew([ModelBinder(typeof(DevExpressEditorsBinder))] RecoWeb01.Models.COW_DataStackInquiryViewModel item)
+        public ActionResult Grid_DataStackAddNew([ModelBinder(typeof(DevExpressEditorsBinder))] RecoWeb01.Models.COW_DataStackInquiryViewModel item)
         {
             var model = new object[0];
             if (ModelState.IsValid)
@@ -59,10 +65,10 @@ namespace RecoWeb01.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridViewPartial", model);
+            return PartialView("_Grid_DataStack", model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialUpdate([ModelBinder(typeof(DevExpressEditorsBinder))] RecoWeb01.Models.COW_DataStackInquiryViewModel item)
+        public ActionResult Grid_DataStackUpdate([ModelBinder(typeof(DevExpressEditorsBinder))] RecoWeb01.Models.COW_DataStackInquiryViewModel item)
         {
             var model = new object[0];
             if (ModelState.IsValid)
@@ -78,10 +84,10 @@ namespace RecoWeb01.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridViewPartial", model);
+            return PartialView("_Grid_DataStack", model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult GridViewPartialDelete(RecoWeb.Domain.Concrete.COW_DataStackInquiry_Result COW_DataStackInquiry)
+        public ActionResult Grid_DataStackDelete(RecoWeb.Domain.Concrete.COW_DataStackInquiry_Result COW_DataStackInquiry)
         {
             var model = new object[0];
             if (COW_DataStackInquiry != null)
@@ -95,7 +101,9 @@ namespace RecoWeb01.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_GridViewPartial", model);
+            return PartialView("_Grid_DataStack", model);
         }
+        
+
     }
 }

@@ -6,13 +6,13 @@
     transform: translateY(50%);
 }*/
 .login-body {
-  margin:auto auto;
+  /*margin:auto auto;*/
   width:100%;
   max-width:450px;
   
   height:100%;
   
-  padding:20% !important;
+  padding:15% !important;
   display:table-cell;
   vertical-align:middle;
   text-align:center;

@@ -381,7 +381,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Master\Employee.cshtml" />
     <Content Include="Views\GridTest\GridTest.cshtml" />
-    <Content Include="Views\GridTest\_GridViewPartial.cshtml" />
+    <Content Include="Views\GridTest\_Grid_DataStack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

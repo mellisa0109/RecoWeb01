@@ -16,7 +16,7 @@ namespace RecoWeb.Domain.Concrete
         public int StackID { get; set; }
         public string StackCode { get; set; }
         public string StackName { get; set; }
-        public Nullable<System.DateTime> LaunchTime { get; set; }
+        public string LaunchTime { get; set; }
         public string GenerateTime { get; set; }
         public string UpdateTime { get; set; }
     }
