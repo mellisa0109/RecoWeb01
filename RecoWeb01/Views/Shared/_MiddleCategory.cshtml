@@ -1,0 +1,29 @@
+﻿@model RecoWeb01.Models.COW_MenuInquiryViewModel
+
+<ul id="subMenu" class="nav">
+    @foreach (var menu in Model.COW_MenuListByJsonInquirySubMenu)
+    {
+        <li class="dropdown nav-item active">
+            <a class="nav-link" href="#">
+                <i class="material-icons">chevron_right</i>
+                <p>@menu.ParentMenuCode</p>
+            </a>
+            @if (Model.COW_MenuListByJsonInquiryMainMenu.Where(s => s.MenuCode == menu.ParentMenuCode).Count() > 0)
+            {
+                <ul class="dropdown-menu">
+                    @foreach (var item in Model.COW_MenuListByJsonInquiryMainMenu.Where(s => s.MenuCode == menu.ParentMenuCode))
+                    {
+                        @*<li class="dropdown-item">*@
+                        <a class="dropdown-item" href="#">
+                            <i class="material-icons">chevron_right</i>
+                            <p>@item.ParentMenuCode</p>
+                        </a>
+                        @*</li>*@
+                    }
+                </ul>
+            }
+        </li>
+    }
+
+
+</ul>
