@@ -1,0 +1,83 @@
+﻿
+/*회원가입 관련 css*/
+
+.register-body {
+  text-align:center !important;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-register {
+  width: 100%;
+  max-width: 450px;
+  padding: 25px;
+  margin: 0 auto;
+}
+.form-register .checkbox {
+  font-weight: 400;
+  display: flex;
+}
+.form-register .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-register .form-control:focus {
+  z-index: 2;
+}
+.form-register #EmployeeId {
+  margin-right:0px !important;
+  margin-bottom: -2px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-register #Password {
+  margin-right:0px !important;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-register #ConfirmPassword {
+  margin-right:0px !important;
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-register #EmployeeName {
+  margin-right:0px !important;
+  margin-bottom: -2px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-register #Email {
+  margin-right:0px !important;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-register #PhoneNumber {
+  margin-right:0px !important;  
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-bottom: 20px;
+}

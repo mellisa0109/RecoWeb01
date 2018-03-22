@@ -27,5 +27,9 @@ namespace RecoWeb01.Controllers
             return View(viewModel);
         }
 
+        public ActionResult myTest()
+        {
+            return View();
+        }
     }
 }

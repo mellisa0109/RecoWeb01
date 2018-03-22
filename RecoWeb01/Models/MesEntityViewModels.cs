@@ -12,4 +12,9 @@ namespace RecoWeb01.Models
 
         public IEnumerable<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquirySubMenu { get; set; }
     }
+    
+    public class PRW_EmployeeSaveViewModel
+    {
+        public int PRW_EmployeeSave { get; set; }
+    }
 }

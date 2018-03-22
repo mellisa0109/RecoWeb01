@@ -4,16 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RecoWeb.Domain.Abstract;
+using System.Data.Entity.Core.Objects;
 
 namespace RecoWeb.Domain.Concrete
 {
     public class MesEntityRepository : IMesEntityRepository
     {
-        private RecowebdbEntities context = new RecowebdbEntities();    
-         
+        private RecowebdbEntities context = new RecowebdbEntities();     
 
         public IEnumerable<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry(){
-            return context.COW_MenuListByJsonInquiry();
+            return context.COW_MenuListByJsonInquiry(); 
+        }
+        
+
+        public int PRW_EmployeeSave(string id,string password, string name, string email, string phonenumber, ObjectParameter outmessage)
+        {
+            return context.PRW_EmployeeSave(id, password, name, email, phonenumber, outmessage);
         }
     }
 }

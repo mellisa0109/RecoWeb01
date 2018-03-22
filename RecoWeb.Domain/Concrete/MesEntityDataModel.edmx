@@ -6,6 +6,14 @@
     <edmx:StorageModels>
     <Schema Namespace="RecowebdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="COW_MenuListByJsonInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PRW_EmployeeSave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_EmployeeId" Type="varchar" Mode="In" />
+          <Parameter Name="p_Password" Type="varchar" Mode="In" />
+          <Parameter Name="p_EmployeeName" Type="nvarchar" Mode="In" />
+          <Parameter Name="p_Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="p_PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="p_OutMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
         <EntityContainer Name="RecowebdbModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -13,6 +21,14 @@
       <Schema Namespace="RecowebdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RecowebdbEntities" annotation:LazyLoadingEnabled="true" >
           <FunctionImport Name="COW_MenuListByJsonInquiry" ReturnType="Collection(RecowebdbModel.COW_MenuListByJsonInquiry_Result)" />
+          <FunctionImport Name="PRW_EmployeeSave">
+            <Parameter Name="p_EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="p_Password" Mode="In" Type="String" />
+            <Parameter Name="p_EmployeeName" Mode="In" Type="String" />
+            <Parameter Name="p_Email" Mode="In" Type="String" />
+            <Parameter Name="p_PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="p_OutMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="COW_MenuListByJsonInquiry_Result">
           <Property Type="String" Name="MenuCode" Nullable="false" MaxLength="30" />
@@ -38,6 +54,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PRW_EmployeeSave" FunctionName="RecowebdbModel.Store.PRW_EmployeeSave" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
