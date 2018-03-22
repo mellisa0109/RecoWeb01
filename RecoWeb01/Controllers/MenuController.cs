@@ -47,7 +47,7 @@ namespace RecoWeb01.Controllers
             return View(viewModel);
         }
 
-        public ViewResult MiddleCategory(string category)
+        public PartialViewResult MiddleCategory(string category)
         {
             COW_MenuInquiryViewModel viewModel = new COW_MenuInquiryViewModel
             {
@@ -56,7 +56,7 @@ namespace RecoWeb01.Controllers
                 COW_MenuListByJsonInquirySubMenu = repository.COW_MenuListByJsonInquiry().Where(s => s.MenuCode == category).ToList()
             };
 
-            return View(viewModel);
+            return PartialView("_MiddleCategory", viewModel);
         }
     }
 }

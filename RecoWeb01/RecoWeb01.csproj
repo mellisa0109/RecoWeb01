@@ -364,6 +364,7 @@
     <Content Include="Views\Master\Employee.cshtml" />
     <Content Include="Views\Menu\MainCategory.cshtml" />
     <Content Include="Views\Menu\MiddleCategory.cshtml" />
+    <Content Include="Views\Shared\_MiddleCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
