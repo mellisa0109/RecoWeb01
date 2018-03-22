@@ -22,8 +22,8 @@ namespace RecoWeb01
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/umd/popper.js",
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/popper.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/customScript").Include("~/Scripts/Layout-Script.js"));
