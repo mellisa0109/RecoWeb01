@@ -6,7 +6,8 @@ using System.Web.Mvc;
 using Ninject;
 using RecoWeb.Domain.Abstract;
 using RecoWeb.Domain.Concrete;
-
+using RecoWeb01.Infrastructure.Abstract;
+using RecoWeb01.Infrastructure.Concrete;
 
 namespace RecoWeb01.Infrastructure
 {
@@ -33,6 +34,8 @@ namespace RecoWeb01.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IMesEntityRepository>().To<MesEntityRepository>();
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
+            
         }
     }
 }

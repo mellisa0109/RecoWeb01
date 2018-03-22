@@ -57,5 +57,18 @@ namespace RecoWeb.Domain.Concrete
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PRW_EmployeeSave", p_EmployeeIdParameter, p_PasswordParameter, p_EmployeeNameParameter, p_EmailParameter, p_PhoneNumberParameter, p_OutMessage);
         }
+    
+        public virtual int COW_AuthenticateInquiry(string p_UserId, string p_Password, ObjectParameter p_OutResult, ObjectParameter p_OutMessage)
+        {
+            var p_UserIdParameter = p_UserId != null ?
+                new ObjectParameter("p_UserId", p_UserId) :
+                new ObjectParameter("p_UserId", typeof(string));
+    
+            var p_PasswordParameter = p_Password != null ?
+                new ObjectParameter("p_Password", p_Password) :
+                new ObjectParameter("p_Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("COW_AuthenticateInquiry", p_UserIdParameter, p_PasswordParameter, p_OutResult, p_OutMessage);
+        }
     }
 }

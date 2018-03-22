@@ -46,7 +46,7 @@ namespace RecoWeb01.Models
         public string Email { get; set; }
     }
 
-    public class LoginViewModel
+    public class LoginViewModel_Back
     {
         [Required]
         [DataType(DataType.Text)]

@@ -5,6 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RecowebdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="COW_AuthenticateInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_UserId" Type="varchar" Mode="In" />
+          <Parameter Name="p_Password" Type="varchar" Mode="In" />
+          <Parameter Name="p_OutResult" Type="bit" Mode="InOut" />
+          <Parameter Name="p_OutMessage" Type="varchar" Mode="InOut" />
+        </Function>
         <Function Name="COW_MenuListByJsonInquiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="PRW_EmployeeSave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="p_EmployeeId" Type="varchar" Mode="In" />
@@ -27,6 +33,12 @@
             <Parameter Name="p_EmployeeName" Mode="In" Type="String" />
             <Parameter Name="p_Email" Mode="In" Type="String" />
             <Parameter Name="p_PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="p_OutMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="COW_AuthenticateInquiry">
+            <Parameter Name="p_UserId" Mode="In" Type="String" />
+            <Parameter Name="p_Password" Mode="In" Type="String" />
+            <Parameter Name="p_OutResult" Mode="InOut" Type="Boolean" />
             <Parameter Name="p_OutMessage" Mode="InOut" Type="String" />
           </FunctionImport>
         </EntityContainer>
@@ -55,6 +67,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PRW_EmployeeSave" FunctionName="RecowebdbModel.Store.PRW_EmployeeSave" />
+          <FunctionImportMapping FunctionImportName="COW_AuthenticateInquiry" FunctionName="RecowebdbModel.Store.COW_AuthenticateInquiry" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

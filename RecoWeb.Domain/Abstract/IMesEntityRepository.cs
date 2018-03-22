@@ -13,5 +13,7 @@ namespace RecoWeb.Domain.Abstract
         IEnumerable<COW_MenuListByJsonInquiry_Result> COW_MenuListByJsonInquiry();
 
         int PRW_EmployeeSave(string id, string password, string name, string email, string phonenumber, ObjectParameter outmessage);
+
+        void COW_AuthenticateInquiry(string id, string password, ObjectParameter outResult, ObjectParameter outMessage);
     }
 }

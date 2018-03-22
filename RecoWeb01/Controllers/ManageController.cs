@@ -306,7 +306,7 @@ namespace RecoWeb01.Controllers
         public ActionResult LinkLogin(string provider)
         {
             // 외부 로그인 공급자로 리디렉션하도록 요청하여 현재 사용자에 대한 로그인 연결
-            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            return new AccountController_Back.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
         //
