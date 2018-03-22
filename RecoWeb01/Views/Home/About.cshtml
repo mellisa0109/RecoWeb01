@@ -1,17 +1,18 @@
 ﻿@{
     ViewBag.Title = "About";
 }
+<div class="login-body">
+    <form class="form-row" method="post" asp-controller="MenuController" asp-action="LoadMenuList">
+        @Html.AntiForgeryToken()
+        <div>
+            <ul class="nav navbar-nav">
+                <li><p><a href="~/Menu/MenuList" class="btn btn-lg">메뉴</a></p></li>
+            </ul>
 
-<form class="form-row" method="post" asp-controller="MenuController" asp-action="LoadMenuList">
-    @Html.AntiForgeryToken()
-    <div>
-        <ul class="nav navbar-nav">
-            <li><p><a href="~/Menu/MenuList" class="btn btn-lg">메뉴</a></p></li>
-        </ul>
+        </div>
+        <div>
+            <p><button type="submit" class="btn  btn-lg">메뉴 뿅!</button></p>
 
-    </div>
-    <div>
-        <p><button type="submit" class="btn  btn-lg">메뉴 뿅!</button></p>
-        
-    </div>
-</form>
+        </div>
+    </form>
+</div>

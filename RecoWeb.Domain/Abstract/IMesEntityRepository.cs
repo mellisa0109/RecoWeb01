@@ -14,6 +14,6 @@ namespace RecoWeb.Domain.Abstract
 
         int PRW_EmployeeSave(string id, string password, string name, string email, string phonenumber, ObjectParameter outmessage);
 
-        void COW_AuthenticateInquiry(string id, string password, ObjectParameter outResult, ObjectParameter outMessage);
+        IEnumerable<COW_DataStackInquiry_Result> COW_DataStackInquiry(string code);
     }
 }

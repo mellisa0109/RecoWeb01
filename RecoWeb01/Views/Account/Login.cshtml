@@ -4,15 +4,15 @@
 @{
     ViewBag.Title = "로그인";
 }
-<div class="login-body vcenter">
+<div class="login-body">
     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
     {
         @Html.AntiForgeryToken()
         <h4>로그인</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="form-group float-left col-md-8 col-sm-8">
+        <div class="form-group login-area">
+            <div class="form-group login-input-area">
                 <div class="form-group">
                     @*<input type="text" class="form-control" placeholder="사번" required/>*@
                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "사번" })
@@ -28,13 +28,12 @@
                     @Html.LabelFor(m => m.RememberMe)
                 </div>*@
             </div>
-            <div class="form-group float-left col-md-4  col-sm-4">
-                <div class="form-group">
+            <div class="form-group login-btn-area">
+                <div class="form-group btn-login">
                     <button type="submit" class="btn btn-primary btn-login">로그인</button>
                 </div>
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary btn-join">등록</button>
-                    @Html.
+                <div class="form-group btn-join">
+                    <button type="button" class="btn btn-default ">등록</button>
                 </div>
             </div>
         </div>
